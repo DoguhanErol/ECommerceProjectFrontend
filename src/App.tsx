@@ -1,11 +1,18 @@
+// src/App.tsx
 import React from 'react';
+import { BrowserRouter, BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 
-function App() {
+import AppRoutes from './routes/AppRoutes'
+
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <button className="btn btn-primary">DaisyUI Button</button>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRoutes /> 
+      </BrowserRouter>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
