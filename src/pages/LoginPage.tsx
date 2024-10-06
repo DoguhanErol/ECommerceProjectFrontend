@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth'; // Güncellenmiş context
 import { loginAPI } from '../services/AuthService'; // Güncellenmiş API
 import bg_image from "../assets/bg_image.webp";
@@ -17,7 +17,7 @@ const LoginPage: React.FC = () => {
     try {
       const data = await loginAPI(username, password);
       loginUser(username,password); // Token'ı context'e kaydet
-      navigate('/profile'); // Giriş yaptıktan sonra yönlendirin
+      navigate('/'); // Giriş yaptıktan sonra yönlendirin
     } catch (error) {
       console.error('Giriş başarısız:', error);
     }
@@ -42,6 +42,8 @@ const LoginPage: React.FC = () => {
               <input type="password" className="input grow border-none" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <button className="btn btn-outline btn-primary w-full" type="submit">Log In</button>
+            <button className="btn btn-outline btn-secondary w-full" type="submit"><a href="/register">Register</a></button>
+
           </form>
         </div>
       </div>

@@ -9,6 +9,7 @@ import NotFoundPage from '../pages/NotFoundPage';
 import Layout from '../components/Layout';
 import { UserProvider } from '../context/useAuth';
 import ProductsPage from '../pages/ProductsPage';
+import RegisterPage from '../pages/RegisterPage';
 
 const AppRoutes = () => {
   return (
@@ -17,6 +18,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} /> {/* Ana sayfa */}
           <Route path="/login" element={<LoginPage />} /> {/* Login sayfası */}
+          <Route path="/register" element={<RegisterPage />} /> 
+
           <Route path="/products" element={<ProductsPage />} /> 
 
 

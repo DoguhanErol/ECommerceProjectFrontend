@@ -37,25 +37,26 @@ export const UserProvider = ({ children }: Props) => {
 
   const registerUser = async (
     username: string,
-    password: string
+    password: string,
+    email: string
   ) => {
-    await registerAPI(username, password)
-      .then((res) => {
-        if (res) {
-          localStorage.setItem("token", res?.data.access);
-          const userObj = {
-            userName: res?.data.username,
-          };
-          localStorage.setItem("user", JSON.stringify(userObj));
-          setToken(res?.data.access!);
-          setUser(userObj!);
-          console.log('Register Success')
-          navigate("/search");
-        }
-      })
-      .catch((e) => console.log(e,'error'));
+    try {
+      const res = await registerAPI(username, password, email);
+      if (res) {
+        localStorage.setItem("token", res?.data.access);
+        const userObj = {
+          userName: res?.data.username,
+        };
+        localStorage.setItem("user", JSON.stringify(userObj));
+        setToken(res?.data.access!);
+        setUser(userObj!);
+        console.log('Register Success');
+      }
+    } catch (e) {
+      console.log(e, 'error');
+    }
   };
-
+  
   const loginUser = async (username: string, password: string) => {
     await loginAPI(username, password)
       .then((res) => {
@@ -68,7 +69,6 @@ export const UserProvider = ({ children }: Props) => {
           setToken(res?.data.access!);
           setUser(userObj!);
           console.log('login success')
-          navigate("/search");
         }
       })
       .catch((e) => console.log(e,'error'));
@@ -83,7 +83,6 @@ export const UserProvider = ({ children }: Props) => {
     localStorage.removeItem("user");
     setUser(null);
     setToken("");
-    navigate("/");
   };
 
   return (
