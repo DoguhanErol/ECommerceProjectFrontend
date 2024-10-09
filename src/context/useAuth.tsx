@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { UserProfile } from "../models/User";
-import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../services/AuthService";
 import React from "react";
 import axios from "axios";
@@ -19,7 +18,6 @@ type Props = { children: React.ReactNode };
 const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: Props) => {
-  const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [isReady, setIsReady] = useState(false);

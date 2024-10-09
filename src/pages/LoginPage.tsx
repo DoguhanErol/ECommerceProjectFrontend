@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const data = await loginAPI(username, password);
+      await loginAPI(username, password);
       loginUser(username,password); // Token'ı context'e kaydet
       navigate('/'); // Giriş yaptıktan sonra yönlendirin
     } catch (error) {
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
               <input type="password" className="input grow border-none" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <button className="btn btn-outline btn-primary w-full" type="submit">Log In</button>
-            <button className="btn btn-outline btn-secondary w-full" type="submit"><a href="/register">Register</a></button>
+            <Link to={'/register'} className="btn btn-outline btn-secondary w-full" >Register</Link>
 
           </form>
         </div>

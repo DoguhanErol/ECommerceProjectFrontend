@@ -10,6 +10,7 @@ import Layout from '../components/Layout';
 import { UserProvider } from '../context/useAuth';
 import ProductsPage from '../pages/ProductsPage';
 import RegisterPage from '../pages/RegisterPage';
+import ProductDetailPage from '../pages/ProductDetailPage';
 
 const AppRoutes = () => {
   return (
@@ -21,6 +22,8 @@ const AppRoutes = () => {
           <Route path="/register" element={<RegisterPage />} /> 
 
           <Route path="/products" element={<ProductsPage />} /> 
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+
 
 
           {/* Protected routes */}
