@@ -36,18 +36,21 @@ const ProductsPage:React.FC = () => {
 
   return (
     <div className="products-page bg-cover" style={{ backgroundImage: `url(${bg_image})` }}>
-        <h2 className='flex w-full justify-end text-2xl text-pretty font-mono'><span className="bg-base-100 bg-opacity-70 rounded-lg m-1 p-2">Category: <span className='text-blue-700'>All</span></span></h2>
+        <h2 className='flex w-full justify-end text-xl text-pretty font-mono'><span className="bg-base-100 bg-opacity-70 rounded-lg m-1 p-2">Category: <span className='text-blue-700'>All</span></span></h2>
+        {/* Situations */}
         {loading ? (
         <Loading />
       ) : error ? ( // Check if there's an error
         <Error message={error} /> // Display the error component
       ) : (
         <>
+        {/* Data */}
           <div className="flex justify-center gap-4 flex-wrap p-5">
             {data.map((product, index) => (
               <ProductCard key={index} product={product} /> 
             ))}
           </div>
+        {/* Pagenation */}
           <div className="join flex justify-center py-1 mt-4">
             <button className='join-item btn' onClick={handlePreviousPage} disabled={page === 1}>
             «

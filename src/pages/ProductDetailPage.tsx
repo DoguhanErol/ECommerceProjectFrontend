@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/ProductService';
 import LoadingComponent from '../components/modals/Loading';
-import ErrorComponent from '../components/modals/Error';
+import Error from '../components/modals/Error';
 import ProductDetailCard from '../components/modals/ProductDetailCard';
 
 const ProductDetailPage:React.FC = () => {
@@ -33,14 +33,17 @@ const ProductDetailPage:React.FC = () => {
 
   return (
     <div >
+      //Situations
       {isLoading ? (
         <LoadingComponent />
       ) : error ? (
-        <ErrorComponent message={error} />
+        <Error message={error} />
       ) : data ? (
+      //Data
         <ProductDetailCard key={id} product={data} />
       ): (
-        <ErrorComponent message={'!!!Product Coudnt Find!!!'} />
+      //Product Doesnt Exist
+        <Error message={'!!!Product Coudnt Find!!!'} />
       )}
     </div>
   );

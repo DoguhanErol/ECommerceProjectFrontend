@@ -26,6 +26,7 @@ export const getProductById = async (id: number) => {
 export const getProductsByCategory = async (categoryName:String,page: number=1) => {
   try {
     const response = await axios.get<{ results: Product[]; count: number }>(`${API_URL_PRODUCTS}?page=${page}&category=${categoryName}`)
+    console.log(response)
     return response.data;
   } catch (error) {
     console.log('Error fetching products by category:', error);
