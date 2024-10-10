@@ -1,18 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../context/useAuth";
 import { Link } from 'react-router-dom';
+import { getAllCategories } from '../../services/CategoriesService';
+import { Category } from '../../models/Product';
+
 
 const Header: React.FC = () => {
+
   const navigate = useNavigate();
   const { isLoggedIn, logout } = useAuth();
+  const [data, setData] = useState<Category[]>([])
+  const [loading, setLoading] = useState<boolean>(true); 
+
 
   const handleLogout = () => {
     logout(); // Kullanıcıyı oturumdan çıkar
     navigate('/login'); // Kullanıcıyı giriş sayfasına yönlendir
   };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+  
+      try {
+        const response = await getAllCategories();
+        console.log(response);
+        setData(response as unknown as Category[]); 
+      } catch (error) {
+        console.log('Error:' + error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+  
 
   return (
+
     <header>
       <div className="navbar bg-base-100">
         <div className="flex-1">
@@ -23,13 +49,17 @@ const Header: React.FC = () => {
             <div className="flex items-stretch">
               <Link to="/products" className="btn btn-ghost rounded-btn">Products</Link>
               <div className="dropdown dropdown-bottom dropdown-hover">
-                <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">Categories <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M480-333 240-573l51-51 189 189 189-189 51 51-240 240Z"/></svg></div>
-                <ul
-                  tabIndex={0}
-                  className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
-                  <li><a>Item 1</a></li>
-                  <li><a>Item 2</a></li>
-                </ul>
+                {loading ? (
+                    <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">.....</div>
+                ) : (
+                  <><div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">Categories <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M480-333 240-573l51-51 189 189 189-189 51 51-240 240Z" /></svg></div><ul
+                      tabIndex={0}
+                      className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+                      {data && data.map((category) => (
+                        <li><Link to={'products/'+category.name}>{category.name}</Link></li>
+                      ))}
+                    </ul></>
+                )}
               </div>
             </div>
           </div>

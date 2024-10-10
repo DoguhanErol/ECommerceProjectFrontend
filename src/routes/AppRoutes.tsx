@@ -6,11 +6,12 @@ import LoginPage from '../pages/LoginPage';
 import HomePage from '../pages/HomePage';
 import ProtectedRoute from '../routes/PrivateRoute'; // Güncellenmiş ProtectedRoute
 import NotFoundPage from '../pages/NotFoundPage';
-import Layout from '../components/Layout';
+import Layout from '../components/modals/Layout';
 import { UserProvider } from '../context/useAuth';
 import ProductsPage from '../pages/ProductsPage';
 import RegisterPage from '../pages/RegisterPage';
 import ProductDetailPage from '../pages/ProductDetailPage';
+import ProductsByCategory from '../pages/ProductsByCategory';
 
 const AppRoutes = () => {
   return (
@@ -21,7 +22,9 @@ const AppRoutes = () => {
           <Route path="/login" element={<LoginPage />} /> {/* Login sayfası */}
           <Route path="/register" element={<RegisterPage />} /> 
 
-          <Route path="/products" element={<ProductsPage />} /> 
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:categoryName" element={<ProductsByCategory />} /> 
+
           <Route path="/products/:id" element={<ProductDetailPage />} />
 
 

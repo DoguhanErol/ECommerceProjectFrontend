@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './modals/Header'
-import Footer from './modals/Footer'
+import Header from '../modals/Header'
+import Footer from '../modals/Footer'
 import { Outlet } from 'react-router-dom'
 
 const Layout:React.FC = () => {
