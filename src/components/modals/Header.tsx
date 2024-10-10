@@ -48,7 +48,7 @@ const Header: React.FC = () => {
           <div className="flex flex-1 justify-end px-2">
             <div className="flex items-stretch">
               <Link to="/products" className="btn btn-ghost rounded-btn">Products</Link>
-              <div className="dropdown dropdown-bottom dropdown-hover">
+              <div className="dropdown dropdown-bottom ">
                 {loading ? (
                     <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">.....</div>
                 ) : (
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                       tabIndex={0}
                       className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
                       {data && data.map((category) => (
-                        <li><Link to={'products/'+category.name}>{category.name}</Link></li>
+                        <li><Link to={'products/category/'+category.name}>{category.name}</Link></li>
                       ))}
                     </ul></>
                 )}

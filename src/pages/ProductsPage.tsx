@@ -36,7 +36,8 @@ const ProductsPage:React.FC = () => {
 
   return (
     <div className="products-page bg-cover" style={{ backgroundImage: `url(${bg_image})` }}>
-      {loading ? (
+        <h2 className='flex w-full justify-end text-2xl text-pretty font-mono'><span className="bg-base-100 bg-opacity-70 rounded-lg m-1 p-2">Category: <span className='text-blue-700'>All</span></span></h2>
+        {loading ? (
         <Loading />
       ) : error ? ( // Check if there's an error
         <Error message={error} /> // Display the error component

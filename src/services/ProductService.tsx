@@ -8,7 +8,7 @@ export const getProductsByPage = async (page: number=1) => {
     return response.data;
   } catch (error) {
     console.log('Error fetching products:', error);
-    throw error; // Hata durumunda hatayı fırlatalım
+    throw error; 
   }
 };
 
@@ -19,7 +19,17 @@ export const getProductById = async (id: number) => {
     return response.data;
   } catch (error) {
     console.log('Error fetching product by ID:', error);
-    throw error; // Hata durumunda hatayı fırlatalım
+    throw error; 
   }
 };
+
+export const getProductsByCategory = async (categoryName:String,page: number=1) => {
+  try {
+    const response = await axios.get<{ results: Product[]; count: number }>(`${API_URL_PRODUCTS}?page=${page}&category=${categoryName}`)
+    return response.data;
+  } catch (error) {
+    console.log('Error fetching products by category:', error);
+    throw error; 
+  }
+}
 
