@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Norican&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Norican&family=Yuji+Syuku&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
